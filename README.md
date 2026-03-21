@@ -22,7 +22,7 @@ go install github.com/nopedal/gokillport/cmd/killport@latest
 ### Homebrew (coming soon)
 
 ```bash
-brew tap nikolasopedal/tap
+brew tap nopedal/tap
 brew install gokillport
 ```
 

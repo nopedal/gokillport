@@ -1,8 +1,8 @@
-# To use this formula, create a tap repo at github.com/nikolasopedal/homebrew-tap
+# To use this formula, create a tap repo at github.com/nopedal/homebrew-tap
 # and place this file in Formula/gokillport.rb
 #
 # Users can then install with:
-#   brew tap nikolasopedal/tap
+#   brew tap nopedal/tap
 #   brew install gokillport
 
 class Gokillport < Formula
