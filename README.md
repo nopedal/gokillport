@@ -4,8 +4,19 @@ Find and kill processes listening on given ports. One command, no noise.
 
 ## Install
 
+### Quick install (recommended)
+
+```bash
+curl -sSL https://raw.githubusercontent.com/nikolasopedal/gokillport/main/install.sh | sh
+```
+
+This downloads the right binary for your system and installs both `gokillport` and `killport` to `/usr/local/bin`.
+
+### Go
+
 ```bash
 go install github.com/nikolasopedal/gokillport/cmd/gokillport@latest
+go install github.com/nikolasopedal/gokillport/cmd/killport@latest
 ```
 
 ### Homebrew (coming soon)
@@ -25,52 +36,54 @@ make install
 
 ## Usage
 
+Both `gokillport` and `killport` work identically — use whichever you prefer.
+
 Kill a process on a port:
 
 ```bash
-gokillport 3000
+killport 3000
 ```
 
 Kill multiple ports at once:
 
 ```bash
-gokillport 3000 8080 5432
+killport 3000 8080 5432
 ```
 
 Force kill (SIGKILL):
 
 ```bash
-gokillport -f 3000
+killport -f 3000
 ```
 
 Dry run — see what would be killed:
 
 ```bash
-gokillport -n 3000
+killport -n 3000
 ```
 
 List all listening processes:
 
 ```bash
-gokillport -l
+killport -l
 ```
 
 JSON output for scripting:
 
 ```bash
-gokillport --json 3000
+killport --json 3000
 ```
 
 Quiet mode (errors only):
 
 ```bash
-gokillport -q 3000
+killport -q 3000
 ```
 
 Custom timeout before escalation to SIGKILL:
 
 ```bash
-gokillport -t 10 3000
+killport -t 10 3000
 ```
 
 ## Flags
@@ -101,10 +114,21 @@ Works on macOS, Linux, and Windows. Platform detection is automatic at runtime.
 - **Linux**: uses `ss` with `/proc/net/tcp` fallback
 - **Windows**: uses `netstat -ano` and `taskkill`
 
+## Releasing
+
+Tag and push — GitHub Actions builds and uploads binaries automatically:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+Or manually: `make release` (requires `gh` CLI).
+
 ## Build
 
 ```bash
-make build          # current platform
+make build          # current platform (both binaries)
 make cross          # all platforms → dist/
 make install        # install to $GOPATH/bin
 make test           # run tests
