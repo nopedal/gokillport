@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"time"
 
@@ -15,7 +16,7 @@ import (
 )
 
 var (
-	version = "dev"
+	version = getVersion()
 
 	flagForce   bool
 	flagDryRun  bool
@@ -203,4 +204,11 @@ func runList(f finder.PortFinder, w *os.File) error {
 
 	formatter.PrintTable(w, procs)
 	return nil
+}
+
+func getVersion() string {
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
+		return info.Main.Version
+	}
+	return "dev"
 }

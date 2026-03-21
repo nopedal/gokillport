@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"time"
 
@@ -13,7 +14,7 @@ import (
 )
 
 var (
-	version = "dev"
+	version = getVersion()
 
 	flagForce   bool
 	flagDryRun  bool
@@ -205,4 +206,13 @@ func runList(f finder.PortFinder, w *os.File) error {
 
 	formatter.PrintTable(w, procs)
 	return nil
+}
+
+func getVersion() string {
+	// Prefer ldflags-injected version at build time.
+	// Fall back to Go module version (set by `go install ...@v0.1.0`).
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
+		return info.Main.Version
+	}
+	return "dev"
 }
