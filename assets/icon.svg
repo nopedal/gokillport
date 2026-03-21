@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  <!-- Background rounded square -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="url(#bg)"/>
+  <!-- Subtle border -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="none" stroke="#e94560" stroke-width="3" opacity="0.3"/>
+  <!-- Letter k -->
+  <text x="256" y="340" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', monospace" font-size="320" font-weight="700" fill="url(#accent)" text-anchor="middle" dominant-baseline="middle" letter-spacing="-10">k</text>
+  <!-- Small crosshair/target indicator -->
+  <circle cx="390" cy="130" r="28" fill="none" stroke="#e94560" stroke-width="4" opacity="0.6"/>
+  <line x1="390" y1="98" x2="390" y2="162" stroke="#e94560" stroke-width="3" opacity="0.4"/>
+  <line x1="358" y1="130" x2="422" y2="130" stroke="#e94560" stroke-width="3" opacity="0.4"/>
+  <circle cx="390" cy="130" r="4" fill="#e94560" opacity="0.8"/>
+</svg>

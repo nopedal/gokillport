@@ -1,0 +1,4 @@
+/gokillport
+dist/
+*.exe
+.DS_Store
