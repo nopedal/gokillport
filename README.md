@@ -6,11 +6,19 @@ Find and kill processes listening on given ports. One command, no noise.
 
 ### Quick install (recommended)
 
+**macOS / Linux:**
+
 ```bash
 curl -sSL https://raw.githubusercontent.com/nopedal/gokillport/main/install.sh | sh
 ```
 
-This downloads the right binary for your system and installs both `gokillport` and `killport` to `/usr/local/bin`.
+**Windows (PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/nopedal/gokillport/main/install.ps1 | iex
+```
+
+This downloads the right binary for your system and installs both `gokillport` and `killport`.
 
 ### Go
 
