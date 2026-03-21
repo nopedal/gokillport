@@ -2,9 +2,9 @@
 set -e
 
 # gokillport installer
-# Usage: curl -sSL https://raw.githubusercontent.com/nikolasopedal/gokillport/main/install.sh | sh
+# Usage: curl -sSL https://raw.githubusercontent.com/nopedal/gokillport/main/install.sh | sh
 
-REPO="nikolasopedal/gokillport"
+REPO="nopedal/gokillport"
 INSTALL_DIR="/usr/local/bin"
 BINARY="gokillport"
 ALIAS="killport"

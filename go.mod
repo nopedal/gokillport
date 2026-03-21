@@ -1,4 +1,4 @@
-module github.com/nikolasopedal/gokillport
+module github.com/nopedal/gokillport
 
 go 1.22.2
 

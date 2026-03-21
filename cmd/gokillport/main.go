@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/nikolasopedal/gokillport/internal/finder"
-	"github.com/nikolasopedal/gokillport/internal/formatter"
-	"github.com/nikolasopedal/gokillport/internal/killer"
+	"github.com/nopedal/gokillport/internal/finder"
+	"github.com/nopedal/gokillport/internal/formatter"
+	"github.com/nopedal/gokillport/internal/killer"
 	"github.com/spf13/cobra"
 )
 

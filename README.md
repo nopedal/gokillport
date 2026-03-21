@@ -7,7 +7,7 @@ Find and kill processes listening on given ports. One command, no noise.
 ### Quick install (recommended)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/nikolasopedal/gokillport/main/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/nopedal/gokillport/main/install.sh | sh
 ```
 
 This downloads the right binary for your system and installs both `gokillport` and `killport` to `/usr/local/bin`.
@@ -15,8 +15,8 @@ This downloads the right binary for your system and installs both `gokillport` a
 ### Go
 
 ```bash
-go install github.com/nikolasopedal/gokillport/cmd/gokillport@latest
-go install github.com/nikolasopedal/gokillport/cmd/killport@latest
+go install github.com/nopedal/gokillport/cmd/gokillport@latest
+go install github.com/nopedal/gokillport/cmd/killport@latest
 ```
 
 ### Homebrew (coming soon)
@@ -29,7 +29,7 @@ brew install gokillport
 ### From source
 
 ```bash
-git clone https://github.com/nikolasopedal/gokillport.git
+git clone https://github.com/nopedal/gokillport.git
 cd gokillport
 make install
 ```

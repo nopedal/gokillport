@@ -7,26 +7,26 @@
 
 class Gokillport < Formula
   desc "Find and kill processes listening on given ports"
-  homepage "https://github.com/nikolasopedal/gokillport"
+  homepage "https://github.com/nopedal/gokillport"
   version "0.1.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/nikolasopedal/gokillport/releases/download/v#{version}/gokillport-darwin-arm64"
+      url "https://github.com/nopedal/gokillport/releases/download/v#{version}/gokillport-darwin-arm64"
       sha256 "PLACEHOLDER_SHA256_DARWIN_ARM64"
     else
-      url "https://github.com/nikolasopedal/gokillport/releases/download/v#{version}/gokillport-darwin-amd64"
+      url "https://github.com/nopedal/gokillport/releases/download/v#{version}/gokillport-darwin-amd64"
       sha256 "PLACEHOLDER_SHA256_DARWIN_AMD64"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/nikolasopedal/gokillport/releases/download/v#{version}/gokillport-linux-arm64"
+      url "https://github.com/nopedal/gokillport/releases/download/v#{version}/gokillport-linux-arm64"
       sha256 "PLACEHOLDER_SHA256_LINUX_ARM64"
     else
-      url "https://github.com/nikolasopedal/gokillport/releases/download/v#{version}/gokillport-linux-amd64"
+      url "https://github.com/nopedal/gokillport/releases/download/v#{version}/gokillport-linux-amd64"
       sha256 "PLACEHOLDER_SHA256_LINUX_AMD64"
     end
   end

@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/nikolasopedal/gokillport/internal/finder"
-	"github.com/nikolasopedal/gokillport/internal/killer"
+	"github.com/nopedal/gokillport/internal/finder"
+	"github.com/nopedal/gokillport/internal/killer"
 )
 
 var (
