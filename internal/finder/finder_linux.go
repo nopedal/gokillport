@@ -2,7 +2,10 @@ package finder
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
+	"io"
+	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -200,15 +203,36 @@ type procEntry struct {
 	inode     string
 }
 
+// parseProcNetTCP reads the IPv4 and IPv6 TCP socket tables. Sockets bound
+// to the IPv6 wildcard, which is what Go, Node.js and Java servers listening
+// on ":PORT" use, only appear in /proc/net/tcp6. That file is absent when
+// the kernel has IPv6 disabled.
 func parseProcNetTCP() ([]procEntry, error) {
-	f, err := os.Open("/proc/net/tcp")
+	entries, err := readProcNetTCP("/proc/net/tcp")
+	if err != nil {
+		return nil, err
+	}
+	v6, err := readProcNetTCP("/proc/net/tcp6")
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return nil, err
+	}
+	return append(entries, v6...), nil
+}
+
+func readProcNetTCP(path string) ([]procEntry, error) {
+	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
+	return parseProcNetTCPTable(f), nil
+}
 
+// parseProcNetTCPTable parses the /proc/net/tcp and /proc/net/tcp6 format,
+// which differ only in the width of the hex IP address.
+func parseProcNetTCPTable(r io.Reader) []procEntry {
 	var entries []procEntry
-	scanner := bufio.NewScanner(f)
+	scanner := bufio.NewScanner(r)
 	scanner.Scan() // skip header
 	for scanner.Scan() {
 		fields := strings.Fields(scanner.Text())
@@ -227,7 +251,7 @@ func parseProcNetTCP() ([]procEntry, error) {
 			inode:     fields[9],
 		})
 	}
-	return entries, nil
+	return entries
 }
 
 func pidForInode(inode string) int {
