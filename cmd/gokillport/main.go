@@ -39,8 +39,8 @@ func main() {
 				return fmt.Errorf("at least one port number is required")
 			}
 			for _, arg := range args {
-				if _, err := strconv.Atoi(arg); err != nil {
-					return fmt.Errorf("invalid port number: %s", arg)
+				if p, err := strconv.Atoi(arg); err != nil || p < 1 || p > 65535 {
+					return fmt.Errorf("invalid port number: %s (must be 1-65535)", arg)
 				}
 			}
 			return nil
