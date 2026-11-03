@@ -3,6 +3,7 @@ package killer
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
 )
 
@@ -56,6 +57,11 @@ func IsPermissionError(err error) bool {
 func IsProcessGone(err error) bool {
 	if err == nil {
 		return false
+	}
+	// On Unix, signalling an exited process returns os.ErrProcessDone
+	// ("os: process already finished"), not ESRCH's "no such process".
+	if errors.Is(err, os.ErrProcessDone) {
+		return true
 	}
 	msg := err.Error()
 	return containsAny(msg, "no such process", "process not found", "not found")
