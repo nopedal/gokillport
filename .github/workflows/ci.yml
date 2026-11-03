@@ -18,9 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Go 1.22 (the go.mod minimum) is out of support, and current macOS
+      # runners refuse to load binaries it links ("missing LC_UUID load
+      # command"), so tests run on the current stable release.
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: stable
 
       - name: Build
         run: go build ./...
