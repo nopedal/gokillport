@@ -14,7 +14,9 @@ import (
 )
 
 var (
-	version = getVersion()
+	// version is injected with -ldflags "-X main.version=...". It must not
+	// have a function-call initializer, or the linker ignores -X.
+	version string
 
 	flagForce   bool
 	flagDryRun  bool
@@ -28,7 +30,7 @@ func main() {
 	root := &cobra.Command{
 		Use:     "gokillport [ports...]",
 		Short:   "Find and kill processes listening on given ports",
-		Version: version,
+		Version: getVersion(),
 		Args: func(cmd *cobra.Command, args []string) error {
 			if flagList {
 				return nil
@@ -210,6 +212,9 @@ func runList(f finder.PortFinder, w *os.File) error {
 
 func getVersion() string {
 	// Prefer ldflags-injected version at build time.
+	if version != "" {
+		return version
+	}
 	// Fall back to Go module version (set by `go install ...@v0.1.0`).
 	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
 		return info.Main.Version
