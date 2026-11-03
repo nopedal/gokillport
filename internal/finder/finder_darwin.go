@@ -14,7 +14,7 @@ func newPlatformFinder() PortFinder {
 }
 
 func (f *darwinFinder) FindByPort(port int) (*ProcessInfo, error) {
-	out, err := exec.Command("lsof", "-i", fmt.Sprintf(":%d", port), "-sTCP:LISTEN", "-n", "-P").Output()
+	out, err := exec.Command("lsof", fmt.Sprintf("-iTCP:%d", port), "-sTCP:LISTEN", "-n", "-P").Output()
 	if err != nil {
 		// lsof exits 1 when nothing found
 		if exitErr, ok := err.(*exec.ExitError); ok && exitErr.ExitCode() == 1 {
@@ -32,7 +32,7 @@ func (f *darwinFinder) FindByPort(port int) (*ProcessInfo, error) {
 }
 
 func (f *darwinFinder) ListAll() ([]ProcessInfo, error) {
-	out, err := exec.Command("lsof", "-i", "-sTCP:LISTEN", "-n", "-P").Output()
+	out, err := exec.Command("lsof", "-iTCP", "-sTCP:LISTEN", "-n", "-P").Output()
 	if err != nil {
 		if exitErr, ok := err.(*exec.ExitError); ok && exitErr.ExitCode() == 1 {
 			return nil, nil
